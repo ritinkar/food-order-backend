@@ -4,10 +4,10 @@ import httpStatus from 'http-status';
 import APIError from '../helpers/APIError';
 
 /**
- * User Schema
+ * Vendor Schema
  */
-const UserSchema = new mongoose.Schema({
-  username: {
+const VendorSchema = new mongoose.Schema({
+  vendorname: {
     type: String,
     required: true
   },
@@ -52,34 +52,34 @@ const UserSchema = new mongoose.Schema({
 /**
  * Methods
  */
-UserSchema.method({});
+VendorSchema.method({});
 
 /**
  * Statics
  */
-UserSchema.statics = {
+VendorSchema.statics = {
   /**
-   * Get user
-   * @param {ObjectId} id - The objectId of user.
-   * @returns {Promise<User, APIError>}
+   * Get vendor
+   * @param {ObjectId} id - The objectId of vendor.
+   * @returns {Promise<Vendor, APIError>}
    */
   get(id) {
     return this.findById(id)
       .exec()
-      .then((user) => {
-        if (user) {
-          return user;
+      .then((vendor) => {
+        if (vendor) {
+          return vendor;
         }
-        const err = new APIError('No such user exists!', httpStatus.NOT_FOUND);
+        const err = new APIError('No such vendor exists!', httpStatus.NOT_FOUND);
         return Promise.reject(err);
       });
   },
 
   /**
-   * List users in descending order of 'createdAt' timestamp.
-   * @param {number} skip - Number of users to be skipped.
-   * @param {number} limit - Limit number of users to be returned.
-   * @returns {Promise<User[]>}
+   * List vendors in descending order of 'createdAt' timestamp.
+   * @param {number} skip - Number of vendors to be skipped.
+   * @param {number} limit - Limit number of vendors to be returned.
+   * @returns {Promise<Vendor[]>}
    */
   list({
     skip = 0,
@@ -96,6 +96,6 @@ UserSchema.statics = {
 };
 
 /**
- * @typedef User
+ * @typedef Vendor
  */
-export default mongoose.model('User', UserSchema);
+export default mongoose.model('Vendor', VendorSchema);

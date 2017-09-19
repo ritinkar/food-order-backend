@@ -12,6 +12,9 @@ router.get('/health-check', (req, res) =>
 // mount user routes at /users
 router.use('/users', userRoutes);
 
+// mount vendor routes at /users
+router.use('/vendors', vendorRoutes);
+
 // mount auth routes at /auth
 router.use('/auth', authRoutes);
 
