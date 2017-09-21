@@ -27,16 +27,16 @@ describe('## Vendor APIs', () => {
       latitude: '1200',
       longitude: '8766'
     },
-    menu: {
-      item: {
-        name: 'aloo',
+    menu: [
+      {
+        item: 'chicken lollipop',
         price: '150'
       },
-      item: {
-        name: 'gobi',
+      {
+        item: 'drums of heaven',
         price: '120'
       }
-    }
+    ]
   };
 
   describe('# POST /api/vendors', () => {
@@ -48,6 +48,8 @@ describe('## Vendor APIs', () => {
         .then((res) => {
           expect(res.body.vendorname).to.equal(vendor.vendorname);
           expect(res.body.mobileNumber).to.equal(vendor.mobileNumber);
+          expect(res.body.location).to.equal(vendor.location);
+          expect(res.body.menu).to.equal(vendor.menu);
           vendor = res.body;
           done();
         })
@@ -63,6 +65,8 @@ describe('## Vendor APIs', () => {
         .then((res) => {
           expect(res.body.vendorname).to.equal(vendor.vendorname);
           expect(res.body.mobileNumber).to.equal(vendor.mobileNumber);
+          expect(res.body.location).to.equal(vendor.location);
+          expect(res.body.menu).to.equal(vendor.menu);
           done();
         })
         .catch(done);
@@ -90,6 +94,8 @@ describe('## Vendor APIs', () => {
         .then((res) => {
           expect(res.body.vendorname).to.equal('KK');
           expect(res.body.mobileNumber).to.equal(vendor.mobileNumber);
+          expect(res.body.location).to.equal(vendor.location);
+          expect(res.body.menu).to.equal(vendor.menu);
           done();
         })
         .catch(done);
@@ -132,6 +138,8 @@ describe('## Vendor APIs', () => {
         .then((res) => {
           expect(res.body.vendorname).to.equal('KK');
           expect(res.body.mobileNumber).to.equal(vendor.mobileNumber);
+          expect(res.body.location).to.equal(vendor.location);
+          expect(res.body.menu).to.equal(vendor.menu);
           done();
         })
         .catch(done);
