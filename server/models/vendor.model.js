@@ -28,12 +28,10 @@ const VendorSchema = new mongoose.Schema({
   },
   menu: [{
     item: {
-      name: {
-        type: String
-      },
-      price: {
-        type: Number
-      }
+      type: String
+    },
+    price: {
+      type: Number
     }
   }],
   createdAt: {
@@ -41,6 +39,8 @@ const VendorSchema = new mongoose.Schema({
     default: Date.now
   }
 });
+
+
 
 /**
  * Add your

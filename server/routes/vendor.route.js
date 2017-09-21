@@ -10,14 +10,14 @@ router.route('/')
   .get(vendorCtrl.list)
 
   /** POST /api/vendors - Create new vendor */
-  .post(validate(paramValidation.createvendor), vendorCtrl.create);
+  .post(validate(paramValidation.createVendor), vendorCtrl.create);
 
 router.route('/:vendorId')
   /** GET /api/vendors/:vendorId - Get vendor */
   .get(vendorCtrl.get)
 
   /** PUT /api/vendors/:vendorId - Update vendor */
-  .put(validate(paramValidation.updatevendor), vendorCtrl.update)
+  .put(validate(paramValidation.updateVendor), vendorCtrl.update)
 
   /** DELETE /api/vendors/:vendorId - Delete vendor */
   .delete(vendorCtrl.remove);

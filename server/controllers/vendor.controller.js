@@ -33,7 +33,7 @@ function create(req, res, next) {
     vendorname: req.body.vendorname,
     mobileNumber: req.body.mobileNumber,
     location: req.body.location,
-    menu: req.body.location
+    menu: req.body.menu
   });
 
   vendor.save()

@@ -20,6 +20,29 @@ export default {
     }
   },
 
+  // POST /api/vendors
+  createVendor: {
+    body: {
+      vendorname: Joi.string().required(),
+      mobileNumber: Joi.string().regex(/^[1-9][0-9]{9}$/).required(),
+      location: {latitude: Joi.string(),longitude:Joi.string()},
+      menu: Joi.array()
+    }
+  },
+
+  // UPDATE /api/vendors/:vendorId
+  updateVendor: {
+    body: {
+      vendorname: Joi.string().required(),
+      mobileNumber: Joi.string().regex(/^[1-9][0-9]{9}$/).required(),
+      location: {latitude: Joi.string(),longitude:Joi.string()},
+      menu: Joi.array()
+    },
+    params: {
+      vendorId: Joi.string().hex().required()
+    }
+  },
+
   // POST /api/auth/login
   login: {
     body: {
