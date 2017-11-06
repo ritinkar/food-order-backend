@@ -9,7 +9,9 @@ import APIError from '../helpers/APIError';
 const VendorSchema = new mongoose.Schema({
   vendorname: {
     type: String,
-    required: true
+    required: true,
+    unique : true,
+    dropDups: true
   },
   mobileNumber: {
     type: String,
