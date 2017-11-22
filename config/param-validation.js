@@ -49,5 +49,15 @@ export default {
       username: Joi.string().required(),
       password: Joi.string().required()
     }
+  },
+
+  order: {
+    body :{
+      item : Joi.string().required(),
+      vendor : Joi.string().required(),
+      username : Joi.string().required(),
+      userPhone : Joi.string().required(),
+      position : {latitude: Joi.string().required(),longitude:Joi.string().required()}
+    }
   }
 };
