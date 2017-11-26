@@ -22,6 +22,7 @@ router.route('/:vendorId')
   /** DELETE /api/vendors/:vendorId - Delete vendor */
   .delete(vendorCtrl.remove);
 
+
 /** Load vendor when API with vendorId route parameter is hit */
 router.param('vendorId', vendorCtrl.load);
 

@@ -1,6 +1,5 @@
 #TODO
-Implement authentication.
-Handle request for placing the order.
+Integrate sms gateway
 
 #Notes
 6 failing tests.

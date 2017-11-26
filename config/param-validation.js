@@ -55,6 +55,7 @@ export default {
     body :{
       item : Joi.string().required(),
       vendor : Joi.string().required(),
+      vendorID : Joi.string().required(),
       username : Joi.string().required(),
       userPhone : Joi.string().required(),
       position : {latitude: Joi.string().required(),longitude:Joi.string().required()}
