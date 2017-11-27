@@ -10,25 +10,30 @@ const router = express.Router(); // eslint-disable-line new-cap
 
 /** POST /api/order - Processes an order */
 router.route('/')
-.post(validate(paramValidation.order),(req,res,next)=>{
-	Vendor.get(req.body.vendorID)
-    .then((vendor) => {
-      //console.log(vendor); // eslint-disable-line no-param-reassign
-      //check if item in vendor.menu
-      let item=vendor.menu.find((item)=>item.item===req.body.item);
-      if (item===undefined)
-      	{throw new Error("No such item");}
-      console.log(item);
-      //send sms to vendor.phone containing location,username, mobileno,item
-      return next();
-    })
-    .catch(e => next(e));
-	},
-	(req,res)=>{
-	return res.send("ok");
-	});
+  .post(validate(paramValidation.order), (req, res, next) => {
+      Vendor.get(req.body.vendorID)
+        .then((vendor) => {
+          //check if item in vendor.menu
+          let item = vendor.menu.find((item) => item.item === req.body.item);
+          if (!item) {
+            return next(new Error("no such item"));
+          }
+          console.log(item);
+          //send sms to vendor.phone containing location,username, mobileno,item
+          return next();
+        })
+        .catch(e => {return next(e)});
+    },
+    (req, res) => {
+      return res.send("ok");
+    },
+    (error, req, res, next) => {
+      res.status(500);
+      res.json({
+        message: error.message
+      });
+    },
+  );
 
 
 export default router;
-
-
