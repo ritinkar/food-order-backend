@@ -14,6 +14,7 @@ import routes from '../server/routes/index.route';
 import config from './config';
 import APIError from '../server/helpers/APIError';
 
+const path = require('path')
 const app = express();
 
 if (config.env === 'development') {
@@ -22,7 +23,9 @@ if (config.env === 'development') {
 
 // parse body params and attache them to req.body
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 app.use(cookieParser());
 app.use(compress());
@@ -49,6 +52,14 @@ if (config.env === 'development') {
 // mount all routes on /api path
 app.use('/api', routes);
 
+//serve all frontend
+app.use(express.static(path.resolve(__dirname,'..', 'static')))
+
+app.get('/', (req, res) => {
+  res.sendFile(path.resolve(__dirname,'..', 'static', 'index.html'));
+});
+//hack to enforce workflow
+app.get('*',(req,res)=>{res.redirect('/');})
 // if error is not an instanceOf APIError, convert it.
 app.use((err, req, res, next) => {
   if (err instanceof expressValidation.ValidationError) {
